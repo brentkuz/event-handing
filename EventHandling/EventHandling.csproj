@@ -43,6 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bus\EventBus.cs" />
+    <Compile Include="Bus\IEventBus.cs" />
+    <Compile Include="Events\EventBase.cs" />
+    <Compile Include="Events\EventOne.cs" />
+    <Compile Include="Events\AddEvent.cs" />
+    <Compile Include="Handlers\HandlerBase.cs" />
+    <Compile Include="Handlers\HandlerOne.cs" />
+    <Compile Include="Infrastructure\Order.cs" />
+    <Compile Include="Handlers\HandlerTwo.cs" />
+    <Compile Include="Handlers\IHandler.cs" />
+    <Compile Include="Infrastructure\HandlerOrdinal.cs" />
+    <Compile Include="Infrastructure\Helpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
