@@ -12,12 +12,17 @@ namespace EventHandling.Handlers
 
         public HandlerBase()
         {
+            //Register event handler methods on instance.
+            //Public methods with a single parameter that is derived from EventBase.
             Type thisType = this.GetType();
             foreach (var handler in thisType.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
             {
-                var parameter = handler.GetParameters().First();
-                Type parameterType = parameter.ParameterType;
-                handlers.Add(parameterType, handler);
+                var parameters = handler.GetParameters();
+                Type parameterType = parameters.First().ParameterType;
+                if (parameterType.IsSubclassOf(typeof(EventBase)) && parameters.Count() == 1)
+                {
+                    handlers.Add(parameterType, handler);
+                }
             }
         }
 
@@ -27,8 +32,7 @@ namespace EventHandling.Handlers
             if (handlers.ContainsKey(eventType))
             {
                 handlers[eventType].Invoke(this, new object[] { e });
-            }
-                
+            }               
         }
     }
     
